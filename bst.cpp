@@ -25,38 +25,38 @@ int get_depth(Bst bst){
   if(bst == 0)return 0;
   int depth = get_depth(bst->left)+1;
   int r = get_depth(bst->right)+1;
-  return  r>depth ? r:depth;
+  return r>depth ? r:depth;
 }
 
 void add(Bst* bst, int value){
-  Bst &aka = *bst;
-  if(aka == 0){
-    aka = (Bst)malloc(sizeof(struct Node)); aka->data = value;
-    aka->left =0;
-    aka->right =0;
+  Bst &temp = *bst;
+  if(temp == 0){
+    temp = (Bst)malloc(sizeof(struct Node)); temp->data = value;
+    temp->left =0;
+    temp->right =0;
   }
-  else if(value <= aka->data){
-    if(aka->left== 0){
+  else if(value <= temp->data){
+    if(temp->left== 0){
       Bst newBst = (Bst)malloc(sizeof(struct Node));
-      aka->left= newBst;
-            newBst->data = value;
+      temp->left= newBst;
+      newBst->data = value;
       newBst->left = 0;
       newBst->right= 0;
     }
     else{
-      add(&aka->left, value);
+      add(&temp->left, value);
     }
   }
   else{
-    if(aka->right ==0){
+    if(temp->right ==0){
       Bst newBst = (Bst)malloc(sizeof(struct Node));
-      aka->right = newBst;
-        newBst->data = value;
+      temp->right = newBst;
+      newBst->data = value;
       newBst->left = 0;
       newBst ->right= 0;
     }
     else{
-      add(&aka->right,value);
+      add(&temp->right,value);
     }
   }
 }
